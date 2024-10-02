@@ -1,5 +1,3 @@
-import 'package:chat_app/views/home_screen.dart';
-import 'package:chat_app/views/sign_up_screen.dart';
 import 'package:chat_app/widget/signIn&signUp/custom_button_widget.dart';
 import 'package:chat_app/widget/signIn&signUp/custom_text_field_widget.dart';
 import 'package:chat_app/widget/signIn&signUp/sign_in_head_widget.dart';
@@ -50,11 +48,7 @@ class SignInScreen extends StatelessWidget {
               textColor: Colors.black,
               height: 42,
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
-                  ),
-                );
+                Navigator.pushNamed(context, 'HomeScreen');
               },
             ),
             const SizedBox(
@@ -74,11 +68,7 @@ class SignInScreen extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const SignUpScreen(),
-                      ),
-                    );
+                    Navigator.pushNamed(context, 'SignUpScreen');
                   },
                   child: const Text(
                     'Sign Up',
