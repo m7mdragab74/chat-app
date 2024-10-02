@@ -1,4 +1,4 @@
-import 'package:chat_app/views/home_screen.dart';
+import 'package:chat_app/views/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +12,7 @@ class ChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: SignInScreen(),
     );
   }
 }
