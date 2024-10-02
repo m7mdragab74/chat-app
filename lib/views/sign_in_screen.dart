@@ -1,8 +1,8 @@
 import 'package:chat_app/views/home_screen.dart';
 import 'package:chat_app/views/sign_up_screen.dart';
-import 'package:chat_app/widget/signIn/custom_button_widget.dart';
-import 'package:chat_app/widget/signIn/custom_text_field_widget.dart';
-import 'package:chat_app/widget/signIn/sign_in_head_widget.dart';
+import 'package:chat_app/widget/signIn&signUp/custom_button_widget.dart';
+import 'package:chat_app/widget/signIn&signUp/custom_text_field_widget.dart';
+import 'package:chat_app/widget/signIn&signUp/sign_in_head_widget.dart';
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -20,7 +20,7 @@ class SignInScreen extends StatelessWidget {
           children: [
             const SignInHeadWidget(),
             const SizedBox(
-              height: 40,
+              height: 70,
             ),
             const Text(
               'Sign In',
@@ -30,7 +30,7 @@ class SignInScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 16,
+              height: 22,
             ),
             const CustomTextFieldWidget(
               label: 'Email',
@@ -58,19 +58,22 @@ class SignInScreen extends StatelessWidget {
               },
             ),
             const SizedBox(
-              height: 6,
+              height: 14,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  'don\'t have an account',
+                  'don\'t have an account?',
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
-                TextButton(
-                  onPressed: () {
+                const SizedBox(
+                  width: 6,
+                ),
+                GestureDetector(
+                  onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => const SignUpScreen(),
