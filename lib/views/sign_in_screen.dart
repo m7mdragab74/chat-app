@@ -1,3 +1,4 @@
+import 'package:chat_app/constants.dart';
 import 'package:chat_app/widget/signIn&signUp/custom_button_widget.dart';
 import 'package:chat_app/widget/signIn&signUp/custom_text_field_widget.dart';
 import 'package:chat_app/widget/signIn&signUp/sign_in_head_widget.dart';
@@ -9,7 +10,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff2E445E),
+      backgroundColor: kPrimaryColor,
       body: Padding(
         padding: const EdgeInsets.all(9.0),
         child: Column(
