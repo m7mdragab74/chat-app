@@ -10,7 +10,7 @@ class SignInHeadWidget extends StatelessWidget {
         children: [
           Image.asset(
             'assets/images/scholar.png',
-            height: 100,
+            height: 200,
           ),
           const SizedBox(
             height: 2,

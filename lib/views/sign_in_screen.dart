@@ -13,13 +13,11 @@ class SignInScreen extends StatelessWidget {
       backgroundColor: kPrimaryColor,
       body: Padding(
         padding: const EdgeInsets.all(9.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             const SignInHeadWidget(),
             const SizedBox(
-              height: 70,
+              height: 59,
             ),
             const Text(
               'Sign In',

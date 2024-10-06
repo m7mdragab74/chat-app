@@ -18,13 +18,11 @@ class SignUpScreen extends StatelessWidget {
         padding: const EdgeInsets.all(9.0),
         child: Form(
           key: formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
             children: [
               const SignInHeadWidget(),
               const SizedBox(
-                height: 70,
+                height: 59,
               ),
               const Text(
                 'REGISTER',
