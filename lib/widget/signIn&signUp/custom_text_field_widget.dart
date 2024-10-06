@@ -7,7 +7,12 @@ class CustomTextFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (data) {
+        if (data!.isEmpty) {
+          return 'Field is required';
+        }
+      },
       cursorColor: Colors.white,
       cursorErrorColor: Colors.white,
       onChanged: onChange,
