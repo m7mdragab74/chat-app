@@ -22,7 +22,7 @@ class ChatApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         'SignInScreen': (context) => const SignInScreen(),
-        'SignUpScreen': (context) => const SignUpScreen(),
+        'SignUpScreen': (context) => SignUpScreen(),
         'HomeScreen': (context) => const HomeScreen(),
       },
       initialRoute: 'SignInScreen',
