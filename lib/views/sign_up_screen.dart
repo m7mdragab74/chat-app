@@ -57,10 +57,19 @@ class SignUpScreen extends StatelessWidget {
               textColor: Colors.black,
               height: 42,
               onTap: () async {
-                var auth = FirebaseAuth.instance;
-                UserCredential user = await auth.createUserWithEmailAndPassword(
-                    email: email!, password: password!);
-                print(user.user!.displayName);
+                try {
+                  await registerUser();
+                } on FirebaseAuthException catch (e) {
+                  if (e.code == 'weak-password') {
+                    showSnackBar(context, 'The password provide is too week');
+                  } else if (e.code == 'email-already-in-use') {
+                    showSnackBar(
+                        context, 'The account  already exists for that email');
+                  }
+                } catch (e) {
+                  print(e);
+                }
+                showSnackBar(context, 'Success');
               },
             ),
             const SizedBox(
@@ -95,5 +104,23 @@ class SignUpScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> registerUser() async {
+    UserCredential user = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email!, password: password!);
   }
 }
