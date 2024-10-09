@@ -1,4 +1,5 @@
 import 'package:chat_app/constants.dart';
+import 'package:chat_app/widget/chat/chat_bubble.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -26,11 +27,7 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: const Center(
-        child: Text(
-          'Hello in chat app',
-        ),
-      ),
+      body: ChatBubble(),
     );
   }
 }
