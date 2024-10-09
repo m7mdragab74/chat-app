@@ -79,7 +79,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       try {
                         await registerUser();
                         showSnackBar(context, 'Success');
-                        Navigator.pop(context);
+                        Navigator.pushNamed(context, 'HomeScreen');
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {
                           showSnackBar(

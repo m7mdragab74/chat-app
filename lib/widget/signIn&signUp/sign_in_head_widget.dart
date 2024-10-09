@@ -1,3 +1,4 @@
+import 'package:chat_app/constants.dart';
 import 'package:flutter/material.dart';
 
 class SignInHeadWidget extends StatelessWidget {
@@ -9,7 +10,7 @@ class SignInHeadWidget extends StatelessWidget {
       child: Column(
         children: [
           Image.asset(
-            'assets/images/scholar.png',
+            kLogo,
             height: 200,
           ),
           const SizedBox(
