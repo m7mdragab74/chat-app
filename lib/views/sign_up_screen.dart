@@ -1,4 +1,5 @@
 import 'package:chat_app/constants.dart';
+import 'package:chat_app/helper/show_snack_bar.dart';
 import 'package:chat_app/widget/signIn&signUp/custom_button_widget.dart';
 import 'package:chat_app/widget/signIn&signUp/custom_text_field_widget.dart';
 import 'package:chat_app/widget/signIn&signUp/sign_in_head_widget.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class SignUpScreen extends StatefulWidget {
-  SignUpScreen({super.key});
+  const SignUpScreen({super.key});
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -48,7 +49,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 22,
                 ),
-                CustomTextFieldWidget(
+                CustomFormTextFieldWidget(
                   label: 'Email',
                   onChange: (value) {
                     email = value;
@@ -57,7 +58,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 12,
                 ),
-                CustomTextFieldWidget(
+                CustomFormTextFieldWidget(
                   label: 'Password',
                   onChange: (value) {
                     password = value;
@@ -126,19 +127,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 )
               ],
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  void showSnackBar(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          message,
-          style: TextStyle(
-            color: Colors.white,
           ),
         ),
       ),

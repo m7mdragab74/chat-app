@@ -21,7 +21,7 @@ class ChatApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        'SignInScreen': (context) => const SignInScreen(),
+        'SignInScreen': (context) => SignInScreen(),
         'SignUpScreen': (context) => SignUpScreen(),
         'HomeScreen': (context) => const HomeScreen(),
       },
