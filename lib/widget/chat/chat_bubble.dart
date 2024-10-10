@@ -8,24 +8,29 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 65,
-      width: 170,
+    return Align(
       alignment: Alignment.centerLeft,
-      padding: EdgeInsets.only(left: 16),
-      margin: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(32),
-          topRight: Radius.circular(32),
-          bottomRight: Radius.circular(32),
+      child: Container(
+        padding: EdgeInsets.only(
+          left: 16,
+          top: 18,
+          bottom: 18,
+          right: 16,
         ),
-        color: kPrimaryColor,
-      ),
-      child: Text(
-        'I am a new user',
-        style: TextStyle(
-          color: Colors.white,
+        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(32),
+            topRight: Radius.circular(32),
+            bottomRight: Radius.circular(32),
+          ),
+          color: kPrimaryColor,
+        ),
+        child: Text(
+          'I am a new user',
+          style: TextStyle(
+            color: Colors.white,
+          ),
         ),
       ),
     );

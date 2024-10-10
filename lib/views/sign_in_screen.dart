@@ -77,7 +77,6 @@ class _SignInScreenState extends State<SignInScreen> {
                       setState(() {});
                       try {
                         await loginUser();
-                        showSnackBar(context, 'Success');
                         Navigator.pushNamed(context, 'HomeScreen');
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
