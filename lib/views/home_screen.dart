@@ -9,10 +9,11 @@ class ChatScreen extends StatelessWidget {
   CollectionReference messages =
       FirebaseFirestore.instance.collection(kMessagesCollections);
   TextEditingController controller = TextEditingController();
+  final _controller = ScrollController();
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: messages.snapshots(),
+      stream: messages.orderBy(kCreatedAt).snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Message> messagesList = [];
@@ -45,6 +46,7 @@ class ChatScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: ListView.builder(
+                    controller: _controller,
                     itemCount: messagesList.length,
                     itemBuilder: (context, index) {
                       return ChatBubble(
@@ -60,10 +62,16 @@ class ChatScreen extends StatelessWidget {
                     onSubmitted: (data) {
                       messages.add(
                         {
-                          'message': data,
+                          kMessage: data,
+                          kCreatedAt: DateTime.now(),
                         },
                       );
                       controller.clear();
+                      _controller.animateTo(
+                        _controller.position.maxScrollExtent,
+                        duration: Duration(seconds: 1),
+                        curve: Curves.fastOutSlowIn,
+                      );
                     },
                     decoration: InputDecoration(
                       hintText: 'Send message',
