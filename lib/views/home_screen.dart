@@ -5,13 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatScreen extends StatelessWidget {
-  ChatScreen({super.key});
+  ChatScreen({
+    super.key,
+  });
   CollectionReference messages =
       FirebaseFirestore.instance.collection(kMessagesCollections);
   TextEditingController controller = TextEditingController();
   final _controller = ScrollController();
   @override
   Widget build(BuildContext context) {
+    var email = ModalRoute.of(context)!.settings.arguments;
     return StreamBuilder<QuerySnapshot>(
       stream: messages.orderBy(kCreatedAt, descending: true).snapshots(),
       builder: (context, snapshot) {
@@ -65,6 +68,7 @@ class ChatScreen extends StatelessWidget {
                         {
                           kMessage: data,
                           kCreatedAt: DateTime.now(),
+                          'id': email
                         },
                       );
                       controller.clear();

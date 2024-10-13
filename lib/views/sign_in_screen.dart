@@ -77,7 +77,8 @@ class _SignInScreenState extends State<SignInScreen> {
                       setState(() {});
                       try {
                         await loginUser();
-                        Navigator.pushNamed(context, 'HomeScreen');
+                        Navigator.pushNamed(context, 'HomeScreen',
+                            arguments: email);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           print('No user found for that email.');
