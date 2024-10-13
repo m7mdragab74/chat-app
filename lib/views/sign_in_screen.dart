@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class SignInScreen extends StatefulWidget {
-  SignInScreen({super.key});
+  const SignInScreen({super.key});
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
@@ -49,6 +49,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 22,
                 ),
                 CustomFormTextFieldWidget(
+                  obscure: false,
                   label: 'Email',
                   onChange: (value) {
                     email = value;
@@ -58,6 +59,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 12,
                 ),
                 CustomFormTextFieldWidget(
+                  obscure: true,
                   label: 'Password',
                   onChange: (value) {
                     password = value;
@@ -131,6 +133,7 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   Future<void> loginUser() async {
+    // ignore: unused_local_variable
     UserCredential user = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email!, password: password!);
   }

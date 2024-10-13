@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class CustomFormTextFieldWidget extends StatelessWidget {
   const CustomFormTextFieldWidget(
-      {super.key, required this.label, this.onChange});
+      {super.key, required this.label, this.onChange, required this.obscure});
   final String label;
   final void Function(String)? onChange;
+  final bool obscure;
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +15,7 @@ class CustomFormTextFieldWidget extends StatelessWidget {
           return 'Field is required';
         }
       },
+      obscureText: obscure,
       cursorColor: Colors.white,
       cursorErrorColor: Colors.white,
       onChanged: onChange,

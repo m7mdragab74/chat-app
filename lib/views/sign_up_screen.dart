@@ -50,6 +50,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 22,
                 ),
                 CustomFormTextFieldWidget(
+                  obscure: false,
                   label: 'Email',
                   onChange: (value) {
                     email = value;
@@ -59,6 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 12,
                 ),
                 CustomFormTextFieldWidget(
+                  obscure: true,
                   label: 'Password',
                   onChange: (value) {
                     password = value;
@@ -78,8 +80,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       setState(() {});
                       try {
                         await registerUser();
-                        showSnackBar(context, 'Success');
-                        Navigator.pushNamed(context, 'HomeScreen');
+                        Navigator.pushNamed(context, 'HomeScreen',
+                            arguments: email);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {
                           showSnackBar(
@@ -134,6 +136,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   Future<void> registerUser() async {
+    // ignore: unused_local_variable
     UserCredential user = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email!, password: password!);
   }

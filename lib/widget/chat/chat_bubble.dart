@@ -2,6 +2,7 @@ import 'package:chat_app/constants.dart';
 import 'package:chat_app/model/message.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ChatBubble extends StatelessWidget {
   ChatBubble({
     super.key,
@@ -39,6 +40,7 @@ class ChatBubble extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class ChatBubbleForFriend extends StatelessWidget {
   ChatBubbleForFriend({
     super.key,
@@ -48,7 +50,7 @@ class ChatBubbleForFriend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.centerLeft,
+      alignment: Alignment.centerRight,
       child: Container(
         padding: EdgeInsets.only(
           left: 16,
@@ -61,9 +63,9 @@ class ChatBubbleForFriend extends StatelessWidget {
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(32),
             topRight: Radius.circular(32),
-            bottomRight: Radius.circular(32),
+            bottomLeft: Radius.circular(32),
           ),
-          color: Colors.orange,
+          color: Color(0xff006D84),
         ),
         child: Text(
           message.message,

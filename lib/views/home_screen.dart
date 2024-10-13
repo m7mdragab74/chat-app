@@ -4,6 +4,7 @@ import 'package:chat_app/widget/chat/chat_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// ignore: must_be_immutable
 class ChatScreen extends StatelessWidget {
   ChatScreen({
     super.key,
@@ -53,9 +54,13 @@ class ChatScreen extends StatelessWidget {
                     controller: _controller,
                     itemCount: messagesList.length,
                     itemBuilder: (context, index) {
-                      return ChatBubble(
-                        message: messagesList[index],
-                      );
+                      return messagesList[index].id == email
+                          ? ChatBubble(
+                              message: messagesList[index],
+                            )
+                          : ChatBubbleForFriend(
+                              message: messagesList[index],
+                            );
                     },
                   ),
                 ),
