@@ -23,7 +23,7 @@ class ChatApp extends StatelessWidget {
       routes: {
         'SignInScreen': (context) => SignInScreen(),
         'SignUpScreen': (context) => SignUpScreen(),
-        'HomeScreen': (context) => HomeScreen(),
+        'HomeScreen': (context) => ChatScreen(),
       },
       initialRoute: 'SignInScreen',
     );
