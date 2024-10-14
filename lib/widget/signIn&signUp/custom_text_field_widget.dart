@@ -15,6 +15,9 @@ class CustomFormTextFieldWidget extends StatelessWidget {
           return 'Field is required';
         }
       },
+      style: TextStyle(
+        color: Colors.white,
+      ),
       obscureText: obscure,
       cursorColor: Colors.white,
       cursorErrorColor: Colors.white,
