@@ -5,7 +5,6 @@ import 'package:chat_app/helper/show_snack_bar.dart';
 import 'package:chat_app/widget/signIn&signUp/custom_button_widget.dart';
 import 'package:chat_app/widget/signIn&signUp/custom_text_field_widget.dart';
 import 'package:chat_app/widget/signIn&signUp/sign_in_head_widget.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -13,6 +12,8 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
   bool isLoading = false;
+  GlobalKey<FormState> formKey = GlobalKey();
+  String? email, password;
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
@@ -24,8 +25,10 @@ class SignInScreen extends StatelessWidget {
             context,
             'HomeScreen',
           );
+          isLoading = false;
         } else if (state is LoginFailureState) {
-          showSnackBar(context, 'There was an error, try again!');
+          showSnackBar(context, state.errorMessage);
+          isLoading = false;
         }
       },
       child: ModalProgressHUD(
@@ -79,23 +82,8 @@ class SignInScreen extends StatelessWidget {
                     height: 42,
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        isLoading = true;
-                        try {
-                          await loginUser();
-                          Navigator.pushNamed(context, 'HomeScreen',
-                              arguments: email);
-                        } on FirebaseAuthException catch (e) {
-                          if (e.code == 'user-not-found') {
-                            print('No user found for that email.');
-                          } else if (e.code == 'wrong-password') {
-                            print('Wrong password provided for that user.');
-                          }
-                        } catch (e) {
-                          showSnackBar(
-                              context, 'There was an error, try again!');
-                          print(e);
-                        }
-                        isLoading = false;
+                        BlocProvider.of<LoginCubit>(context)
+                            .loginUser(email: email!, password: password!);
                       } else {}
                     },
                   ),
