@@ -22,7 +22,7 @@ class LoginCubit extends Cubit<LoginState> {
           LoginFailureState('wrong password'),
         );
       }
-    } on Exception catch (e) {
+    } catch (e) {
       emit(LoginFailureState('there are error : $e'));
     }
   }
