@@ -1,7 +1,6 @@
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/cubits/chat_cubit/chat_cubit.dart';
 import 'package:chat_app/cubits/chat_cubit/chat_state.dart';
-import 'package:chat_app/model/message.dart';
 import 'package:chat_app/widget/chat/build_app_bar.dart';
 import 'package:chat_app/widget/chat/chat_bubble.dart';
 import 'package:flutter/material.dart';
@@ -12,23 +11,19 @@ class ChatScreen extends StatelessWidget {
 
   TextEditingController controller = TextEditingController();
   final _scrollController = ScrollController();
-  List<Message> messagesList = [];
   @override
   Widget build(BuildContext context) {
-    var email = ModalRoute.of(context)!.settings.arguments;
+    var email = ModalRoute.of(context)!.settings.arguments as String;
 
     return Scaffold(
       appBar: buildAppBar(),
       body: Column(
         children: [
           Expanded(
-            child: BlocConsumer<ChatCubit, ChatState>(
-              listener: (context, state) {
-                if (state is SuccessChatState) {
-                  messagesList = state.messages;
-                }
-              },
+            child: BlocBuilder<ChatCubit, ChatState>(
               builder: (context, state) {
+                var messagesList =
+                    BlocProvider.of<ChatCubit>(context).messagesList;
                 return ListView.builder(
                   reverse: true,
                   controller: _scrollController,
@@ -47,6 +42,8 @@ class ChatScreen extends StatelessWidget {
             child: TextField(
               controller: controller,
               onSubmitted: (message) {
+                BlocProvider.of<ChatCubit>(context)
+                    .sendMessage(message: message, email: email);
                 controller.clear();
                 _scrollController.animateTo(0,
                     duration: Duration(milliseconds: 500),
